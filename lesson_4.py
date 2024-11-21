@@ -128,32 +128,44 @@ for vehicles in vehicle:
 # import time
 
 class Employee:
-    def __init__(self, name, amount):
-        self.name = name 
-        self.amount = amount
-        
+    def __init__(self, name, base_salary):
+        self.name = name
+        self.base_salary = base_salary
+
     def display_info(self):
-        return f'Имя - {self.name}'
-        
+        print(f"Имя: {self.name}")
+
     def calculate_salary(self):
-        return f'Имя - {self.name}  Зп - {self.amount}'
-    
+        return 0
+
+
 class FullTimeEmployee(Employee):
-    def __init__(self, name):
-        super().__init__(name)
-        
+    def __init__(self, name, base_salary):
+        super().__init__(name, base_salary)
+
     def calculate_salary(self):
-        return f'Имя - {self.name}  Зп - {self.amount * 1.2}'
-    
+        return self.base_salary * 1.2
+
+
 class PartTimeEmployee(Employee):
-    def __init__(self, name, amount, time):
-        super().__init__(name, amount)
-        self.time = time
-        
+    def __init__(self, name, base_salary, hours_worked):
+        super().__init__(name, base_salary)
+        self.hours_worked = hours_worked
+
     def calculate_salary(self):
-        return f'Имя - {self.name}  Зп - {self.amount * 1.2} * {self.time}'
-    
-    
+        return self.base_salary * 0.5 * self.hours_worked
+
+
 def process_salary(employee):
     employee.display_info()
+    salary = employee.calculate_salary()
+    print(f"Зарплата: {salary}")
+
+
+# Пример использования
+full_time_employee = FullTimeEmployee("Иван", 50000)
+part_time_employee = PartTimeEmployee("Мария", 500, 20)
+
+process_salary(full_time_employee)
+process_salary(part_time_employee)
     
